@@ -1,0 +1,20 @@
+#font
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: var(--pf-global--FontSize--md);
+    font-weight: var(--pf-global--FontWeight--normal);
+    line-height: var(--pf-global--LineHeight--md);
+    text-align: left;
+    background-color: var(--pf-global--BackgroundColor--100);
+}
+
+.pf-c-page__header {
+    color: var(--pf-global--Color--100);
+    grid-template-columns: auto auto;
+    display: grid;
+    align-items: center;
+    min-width: 0;
+    min-height: var(--pf-c-page__header--MinHeight);
+    background-color: #030303;
+}
