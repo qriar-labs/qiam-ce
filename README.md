@@ -9,4 +9,6 @@ The platform is a key component for several of our products:
 
 Default User and Password: admin/admin
 
+[![Run on Google Cloud](https://deploy.cloud.run/button.svg)](https://deploy.cloud.run)
+
 Keep watching this repository for upcoming great news.
