@@ -1,9 +1,10 @@
 {
     "name": "qiam-ce-test",
     "options": {
-        "allow-unauthenticated": true,
+        "allow-unauthenticated": false,
         "memory": "912Mi",
         "cpu": "1",
+        "port": 8080,
         "max-instances": 10
     }
 }
