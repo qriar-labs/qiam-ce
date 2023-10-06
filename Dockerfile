@@ -35,7 +35,7 @@ ENV KEYCLOAK_ADMIN=admin
 ENV KEYCLOAK_ADMIN_PASSWORD=admin
 
 # Copy your provider and theme files into the image
-COPY ./providers /opt/keycloak/providers
+#COPY ./providers /opt/keycloak/providers
 COPY ./themes /opt/keycloak/themes
 
 # Expose the qiam port
