@@ -1,46 +1,34 @@
+FROM registry.access.redhat.com/ubi9 AS ubi-micro-build
 
-# Use the official Keycloak image as a base image
-# check the latest versions here: https://quay.io/repository/keycloak/keycloak?tab=tags
-FROM quay.io/keycloak/keycloak:22.0.3 as builder
+#ENV KEYCLOAK_VERSION 999.0.0-SNAPSHOT
+ARG KEYCLOAK_DIST=https://github.com/keycloak/keycloak/releases/download/KEYCLOAK_VERSION/keycloak-KEYCLOAK_VERSION.tar.gz
 
-# Configure a database vendor
+RUN dnf install -y tar gzip
+
+ADD $KEYCLOAK_DIST /tmp/keycloak/
+
+# The next step makes it uniform for local development and upstream built.
+# If it is a local tar archive then it is unpacked, if from remote is just downloaded.
+RUN (cd /tmp/keycloak && \
+    tar -xvf /tmp/keycloak/keycloak-*.tar.gz && \
+    rm /tmp/keycloak/keycloak-*.tar.gz) || true
+
+RUN mv /tmp/keycloak/keycloak-* /opt/keycloak && mkdir -p /opt/keycloak/data
+RUN chmod -R g+rwX /opt/keycloak
+
+ENV LANG en_US.UTF-8
+RUN dnf install -y java-17-openjdk-headless glibc-langpack-en
+
+RUN echo "keycloak:x:0:root" >> /etc/group && \
+    echo "keycloak:x:1000:0:keycloak user:/opt/keycloak:/sbin/nologin" >> /etc/passwd
+
 ENV KC_DB=postgres
-
-# Enable health and metrics support
-ENV KC_HEALTH_ENABLED=true
-ENV KC_METRICS_ENABLED=true
-
-WORKDIR /opt/keycloak
-
-# for demonstration purposes only, please make sure to use proper certificates in production instead
-RUN keytool -genkeypair -storepass password -storetype PKCS12 -keyalg RSA -keysize 2048 -validity 1825 -dname "CN=server" -alias server -ext "SAN:c=DNS:idp.qriarlabs.cloud,IP:127.0.0.1" -keystore conf/server.keystore
-
-# Copy the generated truststore.jks file to the container
-COPY truststore.jks /opt/keycloak/truststore.jks
 
 RUN /opt/keycloak/bin/kc.sh build
 
-FROM quay.io/keycloak/keycloak:22.0.3
+USER 1000
 
-COPY --from=builder /opt/keycloak/ /opt/keycloak/
-
-# Set environment variables for Keycloak
-ENV KC_DB=postgres
-ENV KC_DB_URL_HOST=postgres
-ENV KC_DB_URL_DATABASE=db_name
-ENV KC_DB_PASSWORD=password
-ENV KC_DB_USERNAME=user_name
-ENV KC_DB_SCHEMA=public
-ENV KEYCLOAK_ADMIN=admin
-ENV KEYCLOAK_ADMIN_PASSWORD=admin
-
-# Copy your provider and theme files into the image
-#COPY ./providers /opt/keycloak/providers
-COPY ./themes /opt/keycloak/themes
-
-# Expose the qiam port
 EXPOSE 8080
+EXPOSE 8443
 
-ENTRYPOINT ["/opt/keycloak/bin/kc.sh"]
-
-CMD ["start", "--proxy=edge", "--spi-truststore-file-file=/opt/keycloak/truststore.jks", "--spi-truststore-file-password=changeit", "--spi-truststore-file-hostname-verification-policy=WILDCARD", "--spi-theme-default=qiam","--spi-theme-welcome-theme=qiam","--spi-theme-login-theme=qiam","--spi-theme-account-theme=qiam","--spi-theme-admin-theme=qiam"]
+ENTRYPOINT [ "/opt/keycloak/bin/kc.sh" ]
