@@ -1,53 +1,58 @@
-version: "3"
+version: "3.3"
+services:
 
-services:  
-  qiam:    
-    image: qriarlabs/qiam:latest        
-    command: 
-      - start-dev
-      - --spi-theme-default=qiam
-      - --spi-theme-welcome-theme=qiam
-      - --spi-theme-login-theme=qiam
-      - --spi-theme-account-theme=qiam
-      - --spi-theme-admin-theme=qiam
+  qiam:
+    user: 0:0
+    image: qriarlabs/qiam:${QIAM_VERSION_TAG}
+    restart: always
+    entrypoint: "/opt/keycloak/bin/kc.sh start --hostname-strict=false --http-enabled=true --proxy edge --spi-theme-default=qiam --spi-theme-welcome-theme=qiam --spi-theme-login-theme=qiam --spi-theme-account-theme=qiam --spi-theme-admin-theme=qiam"
+    env_file:
+      - .env
+    volumes:
+      - ${PWD}/providers:/opt/keycloak/providers
+      - ${PWD}/themes:/opt/keycloak/themes
+    networks:
+      - qiam-network
     environment:      
-      KC_DB: postgres
-      KC_DB_URL_HOST: postgres
-      KC_DB_URL_DATABASE: db_name
-      KC_DB_PASSWORD: password
-      KC_DB_USERNAME: user_name
-      KC_DB_SCHEMA: public
-      KEYCLOAK_ADMIN: admin
-      KEYCLOAK_ADMIN_PASSWORD: admin      
+      - KEYCLOAK_LOGLEVEL=ALL
+      - QUARKUS_TRANSACTION_MANAGER_ENABLE_RECOVERY=true
+      - PROXY_ADDRESS_FORWARDING=true
+      - KEYCLOAK_HTTP_ENABLED=true
+      - KEYCLOAK_ADMIN=$QIAM_ADMIN_USERNAME
+      - KEYCLOAK_PASSWORD=$QIAM_ADMIN_PASSWORD
+      - KC_DB_USERNAME=$QIAM_DATABASE_USERNAME
+      - KC_DB_PASSWORD=$QIAM_DATABASE_PASSWORD
+      - KC_DB=$QIAM_DATABASE
+      - KC_DB_URL_HOST=$QIAM_DATABASE_HOST
+      - KC_DB_URL_DATABASE=$QIAM_DATABASE_NAME
+      - KC_DB_URL_PORT=$QIAM_DATABASE_PORT 
+      - KC_DB_SCHEMA=$QIAM_DATABASE_SCHEMA
+      - KEYCLOAK_PRODUCTION=true
+      - KEYCLOAK_PROXY=edge
+      - KEYCLOAK_EXTRA_ARGS=--auto-build
+      - JAVA_OPTS=-XX:MaxRAMPercentage=75.0
+   
     ports:      
       - "8080:8080"      
     depends_on:      
       postgres:
         condition: service_healthy
-    volumes:
-      - ${PWD}/providers:/opt/keycloak/providers
-      - ${PWD}/themes:/opt/keycloak/themes
-    networks:
-      network_sso:
-        ipv4_address: "10.0.0.2"    
 
   postgres: 
-    image: postgres:14.9
-    command: postgres -c 'max_connections=200' && postgres -c 'shared_buffers=24MB'    
-    environment:
-      POSTGRES_DB: db_name
-      POSTGRES_USER: user_name
-      POSTGRES_PASSWORD: password
+    image: postgres:15
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+    command: postgres -c 'max_connections=200' && postgres -c 'shared_buffers=24MB'
     healthcheck:
       test: "exit 0"
     ports:
-      - "35432:5432"
+      - "5432:5432"
     networks:
-      network_sso:
-        ipv4_address: "10.0.0.3"
+      - qiam-network
+
 networks:  
-  network_sso:
-    ipam:
-      driver: default
-      config:
-        - subnet: "10.0.0.0/24"    
+  qiam-network:
+    driver: bridge
