@@ -55,7 +55,7 @@ You can access the QIAM Web UI at: `http://localhost:8080`
 
 ## Logging
 
-The Elestio Keycloak Docker image sends the container logs to stdout. To view the logs, you can use the following command:
+The QIAM Docker image sends the container logs to _stdout_. To view the logs, you can use the following command:
 
     docker-compose logs -f
 
