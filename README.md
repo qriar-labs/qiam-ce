@@ -40,7 +40,7 @@ You can access the QIAM Web UI at: `http://localhost:8080`
 | :--------------------------: | :--------------------: |
 | QIAM_VERSION_TAG           |        latest            |
 | QIAM_DATABASE              |        postgres          |
-| QIAM_DATABASE_HOST         |        34.148.48.11      |
+| QIAM_DATABASE_HOST         |        YOUR_DB_IP        |
 | QIAM_DATABASE_NAME         |        qiam_dev_db       |
 | QIAM_DATABASE_USERNAME     |        qiam              |
 | QIAM_DATABASE_PASSWORD     |        qiam              |
