@@ -76,6 +76,10 @@ textarea.pf-c-form-control {
 	height: auto;
 }
 
+input.pf-c-form-control:hover {
+	border-bottom: #3e48a3;
+}
+
 .pf-c-alert__title {
     font-size: var(--pf-global--FontSize--xs);
 }
@@ -551,7 +555,7 @@ ul#kc-totp-supported-apps {
     padding: 0 20px;
     max-width: 500px;
     border-top: 4px solid;
-    border-color: #5E6DF8
+    border-color: #3e48a3
 }
 
 /*phone*/
@@ -659,6 +663,6 @@ ul#kc-totp-supported-apps {
 
 .pf-c-button.pf-m-primary {
     color: var(--pf-c-button--m-primary--Color);
-    background-color: #5E6DF8;
+    background-color: #3e48a3;
 }
 /* End Recovery codes */

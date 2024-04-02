@@ -29,7 +29,7 @@
             <#if properties.logo?has_content>
             var brandImg = resourceUrl + '${properties.logo}';
             <#else>
-            var brandImg = resourceUrl + '/public/logo.svg';
+            var brandImg = resourceUrl + '/public/logo.png';
             </#if>
 
             <#if properties.logoUrl?has_content>
@@ -43,9 +43,9 @@
                 isEditUserNameAllowed : ${realm.editUsernameAllowed?c},
                 isInternationalizationEnabled : ${realm.isInternationalizationEnabled()?c},
                 isLinkedAccountsEnabled : ${realm.identityFederationEnabled?c},
-                isEventsEnabled : ${isEventsEnabled?c},
+                isEventsEnabled : false,
                 isMyResourcesEnabled : ${(realm.userManagedAccessAllowed && isAuthorizationEnabled)?c},
-                isTotpConfigured : ${isTotpConfigured?c},
+                isTotpConfigured : false,
                 deleteAccountAllowed : ${deleteAccountAllowed?c},
                 updateEmailFeatureEnabled: ${updateEmailFeatureEnabled?c},
                 updateEmailActionEnabled: ${updateEmailActionEnabled?c},
@@ -154,7 +154,7 @@
         <#if properties.logo?has_content>
         <img src="${resourceUrl}${properties.logo}" alt="Logo" class="brand">
         <#else>
-        <img src="${resourceUrl}/public/logo.svg" alt="Logo" class="brand">
+        <img src="${resourceUrl}/public/logo.png" alt="Logo" class="brand">
         </#if>
         <p>${msg("loadingMessage")}</p>
         <div>
@@ -179,7 +179,7 @@
             <#if properties.logo?has_content>
             <img class="pf-c-brand brand" src="${resourceUrl}${properties.logo}" alt="Logo">
             <#else>
-            <img class="pf-c-brand brand" src="${resourceUrl}/public/logo.svg" alt="Logo">
+            <img class="pf-c-brand brand" src="${resourceUrl}/public/logo.png" alt="Logo">
             </#if>
           </a>
         </div>

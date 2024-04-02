@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@100;400;700&display=swap");
 /* Patternfly CSS places a "bg-login.jpg" as the background on this ".login-pf" class.
    This clashes with the "keycloak-bg.png' background defined on the body below.
    Therefore the Patternfly background must be set to none. */
@@ -19,16 +18,53 @@
 }
 .kc-registration{
     font-size: 17px;
-
 }
 
 .login-pf body {
-    background: url("../img/qwhite.png") no-repeat center center fixed;
-    background-size: cover;
-    height: 100%;
-    font-family: 'Titillium Web', monospace;
-    font-size: 17px;
+   background: none !important;
+   font-family: "Nunito", sans-serif !important;
 }
+.login-pf-page {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    height: 100vh;
+}
+
+.login-pf-page .login-pf-page-header{
+    margin-bottom: 0;
+}
+
+.login-pf-page-header{
+    flex: 1;
+    background:url(../img/qap_background.png) 0 0/cover no-repeat !important;
+    border-radius: 5px; 
+    text-align: center; 
+    color: #333; 
+}
+.second-col-page{
+    flex: 1;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.text-title{
+    padding-left: 23px;
+    font-size: 1.1rem;
+    margin-bottom: 2.5rem;
+}
+
+.logo-img-page {
+    max-width: 20%;
+}
+
+.background-img-page{
+    height: 100vh;
+}
+
 .login-pf-signup{
     font-size: 17px;
 
@@ -37,7 +73,9 @@
 textarea.pf-c-form-control {
 	height: auto;
 }
-
+input.pf-c-form-control:hover {
+	border-bottom: #6C1C51;
+}
 .pf-c-alert__title {
     font-size: var(--pf-global--FontSize--xs);
 }
@@ -95,9 +133,10 @@ a#kc-current-locale-link::after {
 }
 
 div.kc-logo-text {
-    background-image: url(../img/qblack.png);
+    background-image: url(../img/qriarlabsEscuro.png);
+    background-size: 300px 100px;
     background-repeat: no-repeat;
-    height: 54px;
+    height: 6.25rem;
     width: 300px;
     margin: 0 auto;
 }
@@ -117,9 +156,9 @@ div.kc-logo-text span {
     text-transform: uppercase;
     letter-spacing: 3px;
     line-height: 1.2em;
-    padding: 62px 10px 20px;
+    padding: 50px 10px 0px;
     white-space: normal;
-    
+    margin-bottom: 1rem;
 }
 
 #kc-content {
@@ -512,7 +551,7 @@ ul#kc-totp-supported-apps {
     padding: 0 20px;
     max-width: 500px;
     border-top: 4px solid;
-    border-color: var(--pf-global--primary-color--100);
+    border-color: #6C1C51
 }
 
 /*phone*/
@@ -616,5 +655,10 @@ ul#kc-totp-supported-apps {
 .kc-recovery-codes-confirmation {
     align-items: baseline;
     margin-bottom: 16px;
+}
+
+.pf-c-button.pf-m-primary {
+    color: var(--pf-c-button--m-primary--Color);
+    background-color: #6c1c51;
 }
 /* End Recovery codes */
