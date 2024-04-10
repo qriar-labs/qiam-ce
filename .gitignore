@@ -36,3 +36,5 @@ target
 /node_modules/
 
 .env
+
+./postgres_data
