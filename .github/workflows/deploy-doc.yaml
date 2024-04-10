@@ -22,17 +22,19 @@ jobs:
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
+        working-directory: docs
       - name: Build website
         run: yarn build
+        working-directory: docs
 
       - name: Upload Build Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: build
+          path: docs/build
 
   deploy:
     name: Deploy to GitHub Pages
-    needs: build
+    needs: docs/build
 
     # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
     permissions:
