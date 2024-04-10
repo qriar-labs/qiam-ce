@@ -22,9 +22,12 @@ export default function Header() {
         >
           {!session && (
             <>
-              <span className={styles.notSignedInText}>
-                You are not signed in
-              </span>
+                            <span
+                  style={{ backgroundImage: `url('https://qriarlabs.com/wp-content/uploads/2024/04/just_q_blue.png')` }}
+                  className={styles.avatar}
+                />
+              <span className={styles.signedInText} >You are not signed in                  <br />
+                <strong>please, proceed with the login</strong></span>
               <a
                 href={`/api/auth/signin`}
                 className={styles.buttonPrimary}
@@ -39,16 +42,14 @@ export default function Header() {
           )}
           {session?.user && (
             <>
-              {session.user.image && (
-                <span
-                  style={{ backgroundImage: `url('${session.user.image}')` }}
+              <span
+                  style={{ backgroundImage: `url('https://qriarlabs.com/wp-content/uploads/2024/04/just_q_blue.png')` }}
                   className={styles.avatar}
                 />
-              )}
               <span className={styles.signedInText}>
                 <small>Signed in as</small>
                 <br />
-                <strong>{session.user.email ?? session.user.name}</strong>
+                {session.user.name} | <strong>{session.user.email ?? session.user.name}  </strong>
               </span>
 
               <a
@@ -70,12 +71,8 @@ export default function Header() {
           <li className={styles.navItem}>
             <Link href="/">Home</Link>
           </li>
-          <li className={styles.navItem}>
-            <Link href="/client">Client</Link>
-          </li>
-          <li className={styles.navItem}>
-            <Link href="/server">Server</Link>
-          </li>
+
+
           <li className={styles.navItem}>
             <Link href="/protected">Protected</Link>
           </li>

@@ -3,6 +3,7 @@ services:
 
   qiam:
     user: 0:0
+    #image: quay.io/keycloak/keycloak:21.1.1
     image: qriarlabs/qiam:${QIAM_VERSION_TAG}
     restart: always
     entrypoint: "/opt/keycloak/bin/kc.sh start --hostname-strict=false --http-enabled=true --proxy edge --spi-theme-default=qiam --spi-theme-welcome-theme=qiam --spi-theme-login-theme=qiam --spi-theme-account-theme=qiam --spi-theme-admin-theme=qiam"
@@ -10,6 +11,7 @@ services:
       - .env
     volumes:
       - ${PWD}/providers:/opt/keycloak/providers
+      - ${PWD}/extensions/authenticators/passwordless-magiclink/target/qriarlabs.magiclink-passwordless.jar:/opt/keycloak/providers/qriarlabs.magiclink-passwordless.jar
       - ${PWD}/themes:/opt/keycloak/themes
     networks:
       - qiam-network

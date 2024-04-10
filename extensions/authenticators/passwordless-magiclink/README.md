@@ -2,7 +2,17 @@
 
 Demo authenticator which sends a magic link to the user with which the user can authenticate without needing to provide a password.
 
+
+```
+openjdk version "17.0.10" 2024-01-16 LTS
+OpenJDK Runtime Environment Corretto-17.0.10.7.1 (build 17.0.10+7-LTS)
+```
+
 This moves the security from the users knowledge to its mailbox!
+
+    notice: This passwordless approach uses the configured e-mail 
+    services configured into you keycloak realm
+
 
 To provide a bit more security than _just sending a link via e-mail_, the authentication has to be finished where it was started.
 So this has to happen in the same browser.

@@ -8,7 +8,7 @@ export default function Footer() {
       <hr />
       <ul className={styles.navItems}>
         <li className={styles.navItem}>
-          Skalena Dev Services
+          QriarLabs - IAM
         </li>
       </ul>
     </footer>

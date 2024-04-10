@@ -5,7 +5,7 @@ export default function IndexPage() {
     <Layout>
       <div className="App">
       <header className="App-header">
-        <img src="https://www.valecard.com.br/wp-content/uploads/2021/07/logo-valecard.png" className="App-logo" alt="logo" />
+        <img src="https://qriarlabs.com/wp-content/uploads/2024/02/Qriar-labs-fundo-claro.png" className="App-logo" alt="logo" />
 
       </header>
     </div>
