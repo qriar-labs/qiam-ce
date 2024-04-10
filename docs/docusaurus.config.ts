@@ -34,6 +34,7 @@ const config: Config = {
       'classic',
       {
         docs: {
+          routeBasePath: '/', // Serve the docs at the site's root
           sidebarPath: './sidebars.ts',
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
@@ -62,6 +63,7 @@ const config: Config = {
       logo: {
         alt: 'My Site Logo',
         src: 'img/just_q_blue.png',
+        href: '/home'
       },
       items: [
         {
