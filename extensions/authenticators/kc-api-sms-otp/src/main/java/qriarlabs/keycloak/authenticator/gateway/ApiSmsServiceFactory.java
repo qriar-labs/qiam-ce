@@ -29,14 +29,13 @@ public class ApiSmsServiceFactory {
 
 			String jsonData = gson.toJson(smsMessage);
 
+			log.warn( String.format("Sending to %s the data: %s", api_endpoint, jsonData));
 
+			String response = HttpUtils.sendHttpPostRequest(api_endpoint,jsonData);
 
-			log.warn("Sending to %s the data: %s", api_endpoint, jsonData);
+			log.warn(String.format("Response from operation: %s" , response ));
 
-			HttpUtils.sendHttpPostRequest(api_endpoint,jsonData);
-
-
-			log.warn(String.format("***** SIMULATION MODE ***** Would send SMS to %s with text: %s", phoneNumber, message));
+     		log.warn(String.format("***** SIMULATION MODE ***** Would send SMS to %s with text: %s", phoneNumber, message));
 		};
 
 	}

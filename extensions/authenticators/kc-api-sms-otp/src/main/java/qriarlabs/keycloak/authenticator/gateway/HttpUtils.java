@@ -54,13 +54,13 @@ public class HttpUtils {
 		msg.setUsed(false);
 
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
-
 		try {
-			String apiUrl = "http://localhost:3412/api/sms";
+			String apiUrl = "https://integration.on.qriarlabs.com/webhook/vonange";
 			String jsonData = gson.toJson(msg);
+			System.out.println("Request: " + jsonData);
 			String response = sendHttpPostRequest(apiUrl, jsonData);
 			System.out.println("Response: " + response);
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

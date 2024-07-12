@@ -4,16 +4,12 @@ import org.keycloak.authentication.AuthenticationFlowContext;
 import org.keycloak.authentication.AuthenticationFlowError;
 import org.keycloak.authentication.Authenticator;
 import org.keycloak.common.util.SecretGenerator;
-import org.keycloak.models.AuthenticationExecutionModel;
-import org.keycloak.models.AuthenticatorConfigModel;
-import org.keycloak.models.KeycloakSession;
-import org.keycloak.models.RealmModel;
-import org.keycloak.models.UserModel;
+import org.keycloak.models.*;
 import org.keycloak.sessions.AuthenticationSessionModel;
 import org.keycloak.theme.Theme;
 import qriarlabs.keycloak.authenticator.gateway.VonageSmsServiceFactory;
 
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response;
 import java.util.Locale;
 
 /**
@@ -65,6 +61,8 @@ public class ApiSmsAuthenticator implements Authenticator {
 		AuthenticationSessionModel authSession = context.getAuthenticationSession();
 		String code = authSession.getAuthNote(ApiSmsConstants.CODE);
 		String ttl = authSession.getAuthNote(ApiSmsConstants.CODE_TTL);
+
+
 
 		if (code == null || ttl == null) {
 			context.failureChallenge(AuthenticationFlowError.INTERNAL_ERROR,
