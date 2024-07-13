@@ -5,10 +5,10 @@
  */
 
  @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@100;400;700&display=swap");
-
+ @import url('https://fonts.googleapis.com/css2?family=Onest:wght@100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
  html,
  body, h1, h2, h3, h4, h5, h6 {
-  font-family: "Nunito", sans-serif !important;
+  font-family: "Onest", "Rubik", "Nunito", sans-serif !important;
  }
 
 /* You can override the default Infima variables here. */

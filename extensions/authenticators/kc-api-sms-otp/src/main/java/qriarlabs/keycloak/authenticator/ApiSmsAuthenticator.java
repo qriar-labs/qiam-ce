@@ -7,7 +7,9 @@ import org.keycloak.common.util.SecretGenerator;
 import org.keycloak.models.*;
 import org.keycloak.sessions.AuthenticationSessionModel;
 import org.keycloak.theme.Theme;
-import qriarlabs.keycloak.authenticator.gateway.VonageSmsServiceFactory;
+
+import qriarlabs.keycloak.authenticator.gateway.ApiSmsServiceFactory;
+
 
 import jakarta.ws.rs.core.Response;
 import java.util.Locale;
@@ -44,7 +46,7 @@ public class ApiSmsAuthenticator implements Authenticator {
 			String smsAuthText = theme.getMessages(locale).getProperty("smsAuthText");
 			String smsText = String.format(smsAuthText, code, Math.floorDiv(ttl, 60));
 
-			VonageSmsServiceFactory.get(config.getConfig()).send(mobileNumber, smsText);
+			ApiSmsServiceFactory.get(config.getConfig()).send(mobileNumber, smsText);
 
 			context.challenge(context.form().setAttribute("realm", context.getRealm()).createForm(TPL_CODE));
 		} catch (Exception e) {

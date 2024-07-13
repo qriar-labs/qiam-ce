@@ -2,12 +2,6 @@
  * CSS files with the .module.css suffix will be treated as CSS modules
  * and scoped locally.
  */
- @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@100;400;700&display=swap");
-
- html,
- body, h1, h2, h3, h4, h5, h6 {
-  font-family: "Nunito", sans-serif !important;
- }
 
 .heroBanner {
   padding: 4rem 0;
