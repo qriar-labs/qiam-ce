@@ -1,47 +1,91 @@
 ---
 sidebar_position: 1
 ---
+# QIAM Community Edition
 
-# Tutorial Intro
+QriarLabs IAM Community Edition (QIAM CE) is a plataform built on top of well-known Open Source project Keycloak:
 
-Let's discover **Docusaurus in less than 5 minutes**.
+Keycloak is an open source software product to allow single sign-on with identity and access management aimed at modern applications and services.
 
-## Getting Started
+![Alt text](./qiam_betav1.png)
 
-Get started by **creating a new site**.
+The platform is a key component for several of our products like:
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+* QAP
+* QSCIM
+* QIP
 
-### What you'll need
+<!-- [![Run on Google Cloud](https://deploy.cloud.run/button.svg)](https://deploy.cloud.run) -->
 
-- [Node.js](https://nodejs.org/en/download/) version 18.0 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
+# Usage
 
-## Generate a new site
+## Running Locally
 
-Generate a new Docusaurus site using the **classic template**.
+You can deploy it easily with the following command:
 
-The classic template will automatically be added to your project after you run the command:
+`git clone https://github.com/qriar-labs/qiam-ce.git`
 
-```bash
-npm init docusaurus@latest my-website classic
-```
+Modify the name of the `.env.example` file to `.env`
 
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
+`mv .env.example .env`
 
-The command also installs all necessary dependencies you need to run Docusaurus.
+Edit the `.env` file located in the root folder with your own values.
 
-## Start your site
+Run the project with the following command
 
-Run the development server:
+`docker-compose up -d`
 
-```bash
-cd my-website
-npm run start
-```
+You can access the QIAM Web UI at: `http://localhost:8080`
 
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
+### Environment variables
 
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
+|           Variable           |    Value (example)     |
+| :--------------------------: | :--------------------: |
+| QIAM_VERSION_TAG           |        latest            |
+| QIAM_DATABASE              |        postgres          |
+| QIAM_DATABASE_HOST         |        YOUR_DB_IP        |
+| QIAM_DATABASE_NAME         |        postgres          |
+| QIAM_DATABASE_USERNAME     |        postgres          |
+| QIAM_DATABASE_PASSWORD     |        postgres          |
+| QIAM_DATABASE_PORT         |        5432              |
+| QIAM_DATABASE_SCHEMA       |        public            |
+| QIAM_ADMIN_USERNAME        |        admin             |
+| QIAM_ADMIN_PASSWORD        |        admin             |
+| PG_ADMIN_DEFAULT_PASSWORD  |        admin             |
+| KEYCLOAK_ENABLE_STATISTICS |        true              |
+| POSTGRES_PASSWORD          |        password          |
 
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+# Maintenance
+
+## Logging
+
+The QIAM Docker image sends the container logs to _stdout_. To view the logs, you can use the following command:
+
+`docker-compose logs -f`
+
+To stop the stack you can use the following command:
+
+` docker-compose down `
+
+## Backup and Restore with Docker Compose
+
+To make backup and restore operations easier, we are using folder volume mounts. You can simply stop your stack with docker-compose down, then backup all the files and subfolders in the folder near the docker-compose.yml file.
+
+Creating a ZIP Archive
+For example, if you want to create a ZIP archive, navigate to the folder where you have your docker-compose.yml file and use this command:
+
+`zip -r myarchive.zip .`
+
+Restoring from ZIP Archive
+To restore from a ZIP archive, unzip the archive into the original folder using the following command:
+
+`unzip myarchive.zip -d /path/to/original/folder`
+
+Starting Your Stack
+Once your backup is complete, you can start your stack again with the following command:
+
+`docker-compose up -d`
+
+That's it! With these simple steps, you can easily backup and restore your data volumes using Docker Compose.
+
+`_P.S - Keep watching this repository for upcoming great news ;)_`
