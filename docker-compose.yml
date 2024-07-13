@@ -2,8 +2,11 @@ version: "3.3"
 services:
 
   qiam:
+
     #image: quay.io/keycloak/keycloak:latest
     image: qriarlabs/qiam:${QIAM_VERSION_TAG}
+    #image: quay.io/keycloak/keycloak:22.0.3
+    #image: qriarlabs/qiam:${QIAM_VERSION_TAG}
     restart: always
     entrypoint: "/opt/keycloak/bin/kc.sh start --hostname-strict=false --http-enabled=true --proxy edge --spi-theme-default=qiam --spi-theme-welcome-theme=qiam --spi-theme-login-theme=qiam --spi-theme-account-theme=qiam --spi-theme-admin-theme=qiam --spi-theme-static-max-age=-1 --spi-theme-cache-themes=false --spi-theme-cache-templates=false"
     #entrypoint: "/opt/keycloak/bin/kc.sh start --hostname-strict=false --http-enabled=true --proxy edge"
