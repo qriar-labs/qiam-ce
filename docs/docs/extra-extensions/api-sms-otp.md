@@ -16,7 +16,7 @@ This is an extension created by QriarLabs, that the goal is to invoke third part
 
 You must provide a reference API, that will be an common abstraction for messaging (SMS/WhatsApp), the common payload to send to this API is as simple like that: 
 
-```json
+```js title="json.payload"
 {
   "mobile": "+5511966191717",
   "totp": "32232"

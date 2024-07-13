@@ -35,3 +35,9 @@
   --ifm-color-primary-lightest: #51b3e0d5;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
+
+.footer {
+  background-color: black;
+  color: var(--ifm-footer-color);
+  padding: var(--ifm-footer-padding-vertical) var(--ifm-footer-padding-horizontal);
+}

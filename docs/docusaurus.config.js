@@ -95,46 +95,17 @@ const config = {
         style: 'dark',
         links: [
           {
-            title: 'Docs',
+            title: 'About Us',
             items: [
               {
-                label: 'Tutorial',
-                to: '/docs/intro',
+                label: 'QriarLabs empowers organizations to achieve full integration and enhanced security ',
+                to: 'https://qriarlabs.com',
               },
             ],
           },
-          {
-            title: 'Community',
-            items: [
-              {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-              },
-              {
-                label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
-              },
-              {
-                label: 'Twitter',
-                href: 'https://twitter.com/docusaurus',
-              },
-            ],
-          },
-          {
-            title: 'More',
-            items: [
-              {
-                label: 'Blog',
-                to: '/blog',
-              },
-              {
-                label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
-              },
-            ],
-          },
+
+
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
       },
       prism: {
         theme: prismThemes.github,
@@ -146,14 +117,9 @@ const config = {
       mermaid: true,
     },
     themes: ['@docusaurus/theme-mermaid'],
-
-    
-    
-
     
 };
 
 
 
 export default config;
-
