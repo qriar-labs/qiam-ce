@@ -2,7 +2,6 @@ version: "3.3"
 services:
 
   qiam:
-    user: 0:0
     #image: quay.io/keycloak/keycloak:latest
     image: qriarlabs/qiam:${QIAM_VERSION_TAG}
     restart: always
