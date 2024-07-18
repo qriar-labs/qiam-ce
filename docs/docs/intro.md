@@ -3,9 +3,9 @@ sidebar_position: 1
 ---
 # QIAM Community Edition
 
-QriarLabs IAM Community Edition (QIAM CE) is a plataform built on top of well-known Open Source project Keycloak:
+QriarLabs IAM Community Edition (QIAM CE) is a platform built on top of well-known open source project, Keycloak.
 
-Keycloak is an open source software product to allow single sign-on with identity and access management aimed at modern applications and services.
+Keycloak is an open source software product that allows single sign-on with identity and access management aimed at modern applications and services.
 
 ![Alt text](./qiam_betav1.png)
 
