@@ -4,7 +4,7 @@ services:
   qiam:
 
     #image: quay.io/keycloak/keycloak:latest
-    image: qriarlabs/qiam:${QIAM_VERSION_TAG}
+    # image: qriarlabs/qiam:${QIAM_VERSION_TAG}
     #image: quay.io/keycloak/keycloak:22.0.3
     #image: qriarlabs/qiam:${QIAM_VERSION_TAG}
     restart: always
