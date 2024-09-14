@@ -1,7 +1,7 @@
 name: QIAM-CE Release
 
 on:
-  release
+  release:
     types: [published]
 
 jobs:
